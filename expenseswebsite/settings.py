@@ -54,7 +54,7 @@ SECRET_KEY = 'django-insecure-c2m8*ks*3wwlk+(2f8#8w(aab^lsgrp@9%%db*%=aqqxe_u)z(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['34.217.33.22']
 
 
 # Application definition
@@ -174,7 +174,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'expenseswebsite/static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = '/home/ubuntu/my_project/my_expense_project/expenseswebsite/static/'
 django_heroku.settings(locals())
 
 
@@ -204,3 +205,4 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "t64052064@gmail.com"
 EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = "Invalid@123"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
