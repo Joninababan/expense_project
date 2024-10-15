@@ -205,4 +205,6 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "t64052064@gmail.com"
 EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = "Invalid@123"
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
