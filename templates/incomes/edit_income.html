@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    
+    <div class="row">
+        <div class="col-md-10">
+            <div class="col-md-10">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+                        <li class="breadcrumb-item">
+                            <a href="{% url "incomes" %}">Incomes</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Incomes</li>
+                    </ol>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-body">
+            <form action="{% url "edit-income" income.id %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="" class="form-label">Amount</label>
+                    <input type="number" name="amount" class="form-control form-control-sm" value={{values.amount}} required/>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Description</label>
+                    <input type="text" name="description" class="form-control form-control-sm" value={{values.description}} required/>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Category</label>
+                    <select name="source" class="form-control form-control-sm" required>
+                        {% for source in sources %}
+                            <option value="{{ source.id }}" {% if source.id == values.source.id %}selected{% endif %}>{{ source }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Date of income</label>
+                    <input type="date" name="income_date" class="form-control form-control-sm" value="{{ values.date|date:'Y-m-d' }}" required/>
+                </div>
+                <input
+                    name=""
+                    id=""
+                    class="btn btn-primary"
+                    type="submit"
+                    value="Save"
+                />
+                
+            </form>
+            
+        </div>
+    </div>
+
+
+    
+</div>
+{% endblock content %}

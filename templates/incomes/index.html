@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    
+    <div class="row">
+        <div class="col-md-10">
+            <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="">Incomes</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">My Incomes</li>
+                </ol>
+            </nav>
+        </div>
+    
+        <div class="col-md-2">
+            <a href="{% url "add-income" %}" class="btn btn-primary">Add Income</a>
+        </div>
+    </div>
+
+    <div class="container">
+        {% include 'partials/_messages.html' %}
+
+        <div class="row">
+            <div class="col-md-8">
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="searchField" placeholder="Search"/>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="app-table">
+            {% if incomes.count %}
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Amount {{ currency }}</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Description</th>
+                    {% comment %} <th scope="col"></th> {% endcomment %}
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for inc in page_obj %}
+                  <tr>
+                    <td>{{ inc.date }}</td>
+                    <td>{{ inc.amount }}</td>
+                    <td>{{ inc.source }}</td>
+                    <td>{{ inc.description }}</td>
+                    <td>
+                        <a href="{% url "edit-income" inc.id %}" class="btn btn-secondary btn-sm">Edit</a>
+                        <a href="{% url "delete-income" inc.id %}" class="btn btn-danger btn-sm">Delete</a>
+            
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+
+        <p class="no-results" style="display: none;">No results </p>
+        <div class="table-output">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Amount {{ currency }}</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Description</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody class="table-body">
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="pagination-container">
+            <div class="">
+                Showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </div>
+            
+            <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a class="page-link" href="?page=1">&laquo; 1</a></li>
+            <li class="page-item"> <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            
+            {% if page_obj.has_next %}
+            <li class="page-item"> <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+            <li class="page-item"> <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
+            {% endif %}
+            
+            
+            </ul>
+        </div>
+
+
+
+    </div>
+    
+    
+    
+</div>
+
+
+<script src="{% static 'js/searchIncome.js' %}" > </script>
+
+
+
+
+{% endblock content %}

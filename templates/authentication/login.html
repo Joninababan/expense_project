@@ -1,0 +1,32 @@
+{% extends "base_auth.html" %}
+{% load static %}
+
+
+{% block content %}
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Login</h1>
+
+
+    {% include "partials/_messages.html" %}
+
+
+
+    
+    <div class="form-floating">
+        <input type="text" name="username" class="form-control" id="usernameField" placeholder="Username" value="{{fieldsValues.username}}">
+        <label for="floatingInput">Username</label>
+    </div>
+    
+
+    <div class="form-floating">
+        <input type="password" name="password" class="form-control" id="passwordField" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+        <small class="float-end py-2 showPasswordToggle">SHOW</small>
+    </div>
+    
+    <button class="w-100 btn btn-lg btn-primary submit-btn" value="Register" type="submit">Login</button>
+</form>
+
+<script src="{% static 'js/register.js' %}" > </script>
+{% endblock content %}
