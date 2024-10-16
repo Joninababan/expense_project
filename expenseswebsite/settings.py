@@ -60,6 +60,12 @@ ALLOWED_HOSTS = [
     'localhost',
     '34.217.33.22',  # Your server's public IP
     'yourdomain.com',  # Your domain if you have one
+    'http://52.24.125.3'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://52.24.125.3',  # Add your IP address or domain
+    # 'https://52.24.125.3',  # Include this if you're using HTTPS
 ]
 
 
@@ -181,8 +187,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'expenseswebsite/static')]
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = '/home/ubuntu/my_project/my_expense_project/expenseswebsite/staticfiles/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = '/home/ubuntu/my_project/my_expense_project/expenseswebsite/staticfiles/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
