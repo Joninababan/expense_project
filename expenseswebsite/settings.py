@@ -60,6 +60,12 @@ ALLOWED_HOSTS = [
     'localhost',
     '34.217.33.22',  # Your server's public IP
     'yourdomain.com',  # Your domain if you have one
+    'http://52.24.125.3'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://52.24.125.3',  # Add your IP address or domain
+    # 'https://52.24.125.3',  # Include this if you're using HTTPS
 ]
 
 
